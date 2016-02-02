@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Diagnostics;
 using StoryDownloader.Web;
 
 namespace StoryDownloader
@@ -8,8 +8,18 @@ namespace StoryDownloader
     {
         public static void Main(string[] args)
         {
-            new Browser().DownloadStroy();
-            Console.Read();
+            string url;
+            if (args.Length != 1)
+            {
+                url = Console.ReadLine();
+            }
+            else
+            {
+                url = args[0];
+            }
+            new Browser().DownloadStroy(url);
+
+            Process.Start(Browser.OutputFile);
         }
     }
 }
